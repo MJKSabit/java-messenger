@@ -33,9 +33,7 @@ public class ServerConnect {
                 out.newLine();
                 out.flush();
 
-                System.out.println("Server Reply: ");
-                System.out.println(in.readLine());
-            } while (!command.equals("end"));
+            } while (!command.equals("exit"));
 
             in.close();
             out.close();

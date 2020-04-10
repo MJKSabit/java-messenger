@@ -12,6 +12,10 @@ public class Client implements Runnable{
     InputStream inputStream = null;
     OutputStream outputStream = null;
 
+
+    BufferedWriter out = null;
+    BufferedReader in = null;
+
     public Client(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
@@ -26,15 +30,17 @@ public class Client implements Runnable{
             inputStream = clientSocket.getInputStream();
             outputStream = clientSocket.getOutputStream();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(outputStream));
+            in = new BufferedReader(new InputStreamReader(inputStream));
+            out = new BufferedWriter(new OutputStreamWriter(outputStream));
 
-            String command;
-            while (!(command=in.readLine()).equals("end")){
-                System.out.println(command);
-                out.write("Server Says: "+command+"\n");
-                out.flush();
-            }
+            String commandString;
+            Command command;
+
+            do {
+                commandString = in.readLine();
+                command = readCommand(commandString);
+                command.execute();
+            } while (! (command instanceof CommandExit));
 
             in.close();
             out.close();
@@ -46,10 +52,32 @@ public class Client implements Runnable{
                 if(inputStream!=null) inputStream.close();
                 if (outputStream!=null) outputStream.close();
                 if (clientSocket!=null) clientSocket.close();
-                if (serverSocket!=null) serverSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private Command readCommand(String commandString) throws IOException{
+        Command command = CommandFactory.getCommand(commandString);
+
+        int numberOfArguments = command.numberOfArguments();
+        String[] args = new String[numberOfArguments];
+
+        for (int i=0; i<numberOfArguments; i++)
+            args[i] = in.readLine();
+
+        command.setArgs(args);
+
+        return command;
+    }
+
+    private void send(String message) throws IOException {
+        out.write(message);
+        out.flush();
+    }
+
+    private void getCommand() {
+
     }
 }
