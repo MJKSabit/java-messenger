@@ -4,16 +4,21 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Client {
-    ServerSocket serverSocket = null;
+public class Client implements Runnable{
+    final ServerSocket serverSocket;
+
     Socket clientSocket = null;
 
     InputStream inputStream = null;
     OutputStream outputStream = null;
 
-    public Client() {
+    public Client(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
+    }
+
+    @Override
+    public void run() {
         try {
-            serverSocket = new ServerSocket(911);
             clientSocket = serverSocket.accept();
 
             System.out.println("Client Connected...");
