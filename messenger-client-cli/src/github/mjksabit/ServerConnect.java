@@ -10,6 +10,8 @@ public class ServerConnect {
     private final static String SERVER = "127.0.0.1";
     private final static int port = 10500;
 
+    public static String username = null;
+
     public static Scanner scanner = new Scanner(System.in);
 
     Socket socket = null;
