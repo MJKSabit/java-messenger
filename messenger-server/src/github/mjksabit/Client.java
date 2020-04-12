@@ -1,11 +1,15 @@
 package github.mjksabit;
 
+import org.json.JSONException;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Client implements Runnable{
     final Socket clientSocket;
+
+    User currentUser = null;
 
     InputStream inputStream = null;
     OutputStream outputStream = null;
@@ -36,6 +40,11 @@ public class Client implements Runnable{
                 args = in.readLine();
 
                 request = FactoryRequest.getRequest(requestText, args);
+
+                if (request instanceof SignInRequest){
+                    currentUser = ((SignInRequest) request).getUser();
+                }
+
                 response = request.handle();
 
                 out.write(response);
@@ -46,12 +55,9 @@ public class Client implements Runnable{
 
             in.close();
             out.close();
-        } catch (IOException e) {
+        } catch (IOException | JSONException | NullPointerException e) {
             e.printStackTrace();
-        } catch (NullPointerException e) {
-
-        }
-        finally {
+        } finally {
             System.out.println("Client Exit");
             try {
                 if(inputStream!=null) inputStream.close();

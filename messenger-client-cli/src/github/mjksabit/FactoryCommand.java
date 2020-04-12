@@ -7,8 +7,11 @@ public class FactoryCommand {
             case "exit":
                 command = new ExitCommand();
                 break;
-            case "sign-up":
+            case "signup":
                 command = new SignUpCommand();
+                break;
+            case "signin":
+                command = new SignInCommand();
                 break;
             default:
                 command = new UnknownCommand();

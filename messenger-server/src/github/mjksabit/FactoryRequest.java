@@ -13,6 +13,9 @@ public class FactoryRequest {
             case "new_user":
                 created = new NewUserRequest();
                 break;
+            case "sign_in":
+                created = new SignInRequest();
+                break;
             default:
                 created = new InvalidRequest();
         }

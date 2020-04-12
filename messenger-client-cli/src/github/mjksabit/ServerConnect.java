@@ -48,7 +48,7 @@ public class ServerConnect {
                 responseText = in.readLine();
                 responseObject = in.readLine();
 
-//                System.out.println(responseText);
+                System.out.println(responseText);
 
                 response = FactoryResponse.getResponse(responseText, responseObject);
 

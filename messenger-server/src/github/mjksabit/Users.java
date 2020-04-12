@@ -13,6 +13,11 @@ public class Users {
         return true;
     }
 
+    public static User getUser(String username, String password) {
+        if(userLogin(username, password)) return users.get(username);
+        else return null;
+    }
+
     public static boolean userExists(String username) {
         return users.containsKey(username);
     }

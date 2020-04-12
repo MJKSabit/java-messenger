@@ -1,5 +1,7 @@
 package github.mjksabit;
 
+import org.json.JSONException;
+
 abstract public class Request{
     protected static String NO_JSON = "{}";
     protected String arg;
@@ -10,5 +12,5 @@ abstract public class Request{
         this.arg = arg;
     }
 
-    abstract public String handle();
+    abstract public String handle() throws JSONException;
 }
