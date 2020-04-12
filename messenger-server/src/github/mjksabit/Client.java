@@ -5,26 +5,21 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Client implements Runnable{
-    final ServerSocket serverSocket;
-
-    Socket clientSocket = null;
+    final Socket clientSocket;
 
     InputStream inputStream = null;
     OutputStream outputStream = null;
 
-
     BufferedWriter out = null;
     BufferedReader in = null;
 
-    public Client(ServerSocket serverSocket) {
-        this.serverSocket = serverSocket;
+    public Client(Socket clientSocket) {
+        this.clientSocket = clientSocket;
     }
 
     @Override
     public void run() {
         try {
-            clientSocket = serverSocket.accept();
-
             System.out.println("Client Connected...");
 
             inputStream = clientSocket.getInputStream();
@@ -33,14 +28,23 @@ public class Client implements Runnable{
             in = new BufferedReader(new InputStreamReader(inputStream));
             out = new BufferedWriter(new OutputStreamWriter(outputStream));
 
-            String commandString;
-            Command command;
+            String requestText, args, response;
+            Request request;
 
             do {
-                commandString = in.readLine();
-                command = readCommand(commandString);
-                command.execute();
-            } while (! (command instanceof CommandExit));
+                requestText = in.readLine();
+                args = in.readLine();
+
+                request = FactoryRequest.getRequest(requestText, args);
+                response = request.handle();
+
+                out.write(response);
+                out.newLine();
+                out.flush();
+
+            } while (!(request instanceof ExitRequest));
+
+            System.out.println("Client Exit");
 
             in.close();
             out.close();
@@ -56,28 +60,5 @@ public class Client implements Runnable{
                 e.printStackTrace();
             }
         }
-    }
-
-    private Command readCommand(String commandString) throws IOException{
-        Command command = CommandFactory.getCommand(commandString);
-
-        int numberOfArguments = command.numberOfArguments();
-        String[] args = new String[numberOfArguments];
-
-        for (int i=0; i<numberOfArguments; i++)
-            args[i] = in.readLine();
-
-        command.setArgs(args);
-
-        return command;
-    }
-
-    private void send(String message) throws IOException {
-        out.write(message);
-        out.flush();
-    }
-
-    private void getCommand() {
-
     }
 }
