@@ -1,6 +1,6 @@
 package github.mjksabit;
 
-public class InvalidResponse extends Response {
+public class NewUserSuccessResponse extends Response{
     @Override
     void ADDED_TO_THE_FACTORY() {
         // true
@@ -8,6 +8,6 @@ public class InvalidResponse extends Response {
 
     @Override
     public void execute() {
-        System.out.println("Invalid Response...");
+        System.out.println("Created User Successfully! Try Logging in...");
     }
 }

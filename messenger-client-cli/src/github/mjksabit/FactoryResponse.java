@@ -8,6 +8,12 @@ public class FactoryResponse {
             case "exit":
                 created = new ExitResponse();
                 break;
+            case "new_user_success":
+                created = new NewUserSuccessResponse();
+                break;
+            case "new_user_failed":
+                created = new NewUserFailedResponse();
+                break;
             default:
                 created = new InvalidResponse();
         }

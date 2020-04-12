@@ -8,6 +8,8 @@ abstract public class Response {
     protected static String NO_JSON = "{}";
     protected String arg;
 
+    abstract void ADDED_TO_THE_FACTORY();
+
     public void setArg(String arg) {
         this.arg = arg;
     }
