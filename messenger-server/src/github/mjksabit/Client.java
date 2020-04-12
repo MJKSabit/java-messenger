@@ -50,6 +50,8 @@ public class Client implements Runnable{
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+
         }
         finally {
             try {
