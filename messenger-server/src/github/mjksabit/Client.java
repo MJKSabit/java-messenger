@@ -55,9 +55,11 @@ public class Client implements Runnable{
 
             in.close();
             out.close();
-        } catch (IOException | JSONException | NullPointerException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
-        } finally {
+        } catch (NullPointerException e) {
+            // Nothing, normal Exit
+        }finally {
             System.out.println("Client Exit");
             try {
                 if(inputStream!=null) inputStream.close();

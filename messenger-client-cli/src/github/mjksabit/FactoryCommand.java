@@ -13,6 +13,9 @@ public class FactoryCommand {
             case "signin":
                 command = new SignInCommand();
                 break;
+            case "logout":
+                command = new LogOutCommand();
+                break;
             default:
                 command = new UnknownCommand();
         }
