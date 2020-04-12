@@ -1,5 +1,7 @@
 package github.mjksabit;
 
+import org.json.JSONException;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
@@ -8,7 +10,7 @@ public class ServerConnect {
     private final static String SERVER = "127.0.0.1";
     private final static int port = 10500;
 
-    private static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
 
     Socket socket = null;
 
@@ -24,40 +26,40 @@ public class ServerConnect {
             outputStream = socket.getOutputStream();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(outputStream));
 
-            String command, arg;
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(outputStream));
+            Command.setServerOut(out);
+
+            String commandText;
             String responseText, responseObject;
-            Response response;
+            Command command;
 
             do {
-                command = scanner.nextLine();
-                arg = scanner.nextLine();
+                commandText = scanner.nextLine();
 
-                System.out.println("Input taken...");
+                command = FactoryCommand.getCommand(commandText);
 
-                out.write(command);
-                out.newLine();
-                out.write(arg);
-                out.newLine();
+                boolean hasResponse = command.executeWithResponse();
 
-                out.flush();
+                if(!hasResponse) continue;
+
+                Response response;
 
                 responseText = in.readLine();
                 responseObject = in.readLine();
 
-                System.out.println(responseText);
+//                System.out.println(responseText);
 
                 response = FactoryResponse.getResponse(responseText, responseObject);
 
                 response.execute();
 
-            } while (!(response instanceof ExitResponse));
+            } while (!(command instanceof ExitCommand));
 
             in.close();
             out.close();
 
-        } catch (IOException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         } finally {
             try {

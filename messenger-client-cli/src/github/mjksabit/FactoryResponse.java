@@ -5,9 +5,6 @@ public class FactoryResponse {
 
     public static Response getResponse(String type, String arg) {
         switch (type) {
-            case "exit":
-                created = new ExitResponse();
-                break;
             case "new_user_success":
                 created = new NewUserSuccessResponse();
                 break;

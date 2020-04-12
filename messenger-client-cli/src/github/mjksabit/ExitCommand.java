@@ -1,6 +1,6 @@
 package github.mjksabit;
 
-public class ExitResponse extends Response {
+public class ExitCommand extends Command {
 
     @Override
     void ADDED_TO_THE_FACTORY() {
@@ -8,7 +8,8 @@ public class ExitResponse extends Response {
     }
 
     @Override
-    public void execute() {
+    public boolean executeWithResponse() {
         System.out.println("Exit Response...");
+        return false;
     }
 }
