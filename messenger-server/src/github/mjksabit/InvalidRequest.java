@@ -1,8 +1,9 @@
 package github.mjksabit;
 
 public class InvalidRequest extends Request {
-    public InvalidRequest() {
-
+    @Override
+    void ADDED_TO_FACTORY() {
+        // true
     }
 
     @Override

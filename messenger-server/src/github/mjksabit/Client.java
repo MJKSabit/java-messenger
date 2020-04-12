@@ -44,8 +44,6 @@ public class Client implements Runnable{
 
             } while (!(request instanceof ExitRequest));
 
-            System.out.println("Client Exit");
-
             in.close();
             out.close();
         } catch (IOException e) {
@@ -54,6 +52,7 @@ public class Client implements Runnable{
 
         }
         finally {
+            System.out.println("Client Exit");
             try {
                 if(inputStream!=null) inputStream.close();
                 if (outputStream!=null) outputStream.close();

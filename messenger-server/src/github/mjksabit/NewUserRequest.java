@@ -5,6 +5,11 @@ import org.json.JSONObject;
 
 public class NewUserRequest extends Request {
     @Override
+    void ADDED_TO_FACTORY() {
+        // true
+    }
+
+    @Override
     public String handle() {
         try {
             JSONObject userInfo = new JSONObject(arg);
