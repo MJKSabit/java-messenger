@@ -19,8 +19,10 @@ public class NewMessageBoxCommand extends Command{
             return false;
         }
 
-        System.out.print("Enter Other's Username: ");
-        String otherUser = ServerConnect.scanner.nextLine();
+        String otherUser;
+        setExpectedArgs(new String[]{"Receiver Username"});
+        otherUser = args[0];
+
 
         JSONObject object = new JSONObject();
         object.put("other", otherUser);

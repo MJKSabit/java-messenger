@@ -14,6 +14,24 @@ abstract public class Command {
 
     protected String[] args;
 
+    protected void setExpectedArgs(String[] argDetails) {
+        if (args.length != argDetails.length){
+            args = new String[argDetails.length];
+
+            System.out.println("Enter Arguments: ");
+            for (int i=0; i<argDetails.length; i++) {
+                System.out.print(argDetails[i]+" :");
+                args[i] = ServerConnect.scanner.nextLine();
+            }
+        }
+        else {
+            System.out.println("Arguments:");
+            for (int i=0; i<argDetails.length; i++) {
+                System.out.println(argDetails[i]+": "+args[i]);
+            }
+        }
+    }
+
     public void setArgs(String[] args) {
         this.args = args;
     }

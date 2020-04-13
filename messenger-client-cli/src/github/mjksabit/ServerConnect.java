@@ -34,10 +34,10 @@ public class ServerConnect {
 
             String commandText = null;
             String responseText, responseObject;
-            Command command;
+            Command command = null;
 
             do {
-                if (commandText == null) commandText = scanner.nextLine();
+                if (commandText == null || (command instanceof UnknownCommand)) commandText = scanner.nextLine();
 
                 command = FactoryCommand.getCommand(commandText);
 

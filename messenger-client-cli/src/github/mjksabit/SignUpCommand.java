@@ -13,12 +13,11 @@ public class SignUpCommand extends Command{
 
     @Override
     boolean executeWithResponse() throws JSONException, IOException {
+        String username, password;
 
-        System.out.print("Username: ");
-        String username = ServerConnect.scanner.nextLine();
-
-        System.out.print("Password: ");
-        String password = ServerConnect.scanner.nextLine();
+        setExpectedArgs(new String[]{"Username", "Password"});
+        username = args[0];
+        password = args[1];
 
         JSONObject object = new JSONObject();
 
