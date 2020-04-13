@@ -39,7 +39,7 @@ public class Client implements Runnable{
                 requestText = in.readLine();
                 args = in.readLine();
 
-                request = FactoryRequest.getRequest(requestText, args);
+                request = FactoryRequest.getRequest(requestText, args, this);
 
                 if (request instanceof SignInRequest){
                     currentUser = ((SignInRequest) request).getUser();

@@ -17,6 +17,9 @@ public class FactoryResponse {
             case "login_error":
                 created = new SignUpErrorResponse();
                 break;
+            case "logged_out":
+                created = new LogOutResponse();
+                break;
             default:
                 created = new InvalidResponse();
         }

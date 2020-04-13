@@ -29,6 +29,8 @@ public class SignInRequest extends Request{
         String username = object.getString("username");
         String password = object.getString("password");
 
-        return Users.getUser(username, password);
+        User user = Users.getUser(username, password);
+        context.currentUser = user;
+        return user;
     }
 }

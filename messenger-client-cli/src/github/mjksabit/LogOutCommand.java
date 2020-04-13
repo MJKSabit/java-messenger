@@ -1,6 +1,7 @@
 package github.mjksabit;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -12,8 +13,10 @@ public class LogOutCommand extends Command {
 
     @Override
     boolean executeWithResponse() throws JSONException, IOException {
-        ServerConnect.username = null; // Consider executing with response
-        System.out.println("Logged Out Successfully...");
-        return false;
+        ServerConnect.username = null;
+
+        sendRequest("log_out", new JSONObject("{}"));
+
+        return true;
     }
 }

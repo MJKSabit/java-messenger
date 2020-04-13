@@ -18,6 +18,10 @@ public class Users {
         else return null;
     }
 
+    public static User getUser(String username) {
+        return userExists(username) ? users.get(username) : null;
+    }
+
     public static boolean userExists(String username) {
         return users.containsKey(username);
     }
