@@ -1,14 +1,14 @@
 package github.mjksabit;
 
 public class FactoryCommand {
-    public static final String SEPERATOR = " ";
+    public static final String SEPERATOR = " --";
 
     public static Command getCommand(String singleLineArgs) {
         String[] commandArray = singleLineArgs.split(SEPERATOR);
 
         String commandText = commandArray[0];
-
         String[] commandArgs = new String[commandArray.length-1];
+
         for (int i=1; i<commandArray.length; i++) {
             commandArgs[i-1] = commandArray[i];
         }
@@ -32,6 +32,9 @@ public class FactoryCommand {
                 break;
             case "listmsgbox":
                 command = new ListMessageBoxCommand();
+                break;
+            case "newmsg":
+                command = new NewMessageCommand();
                 break;
             default:
                 command = new UnknownCommand();

@@ -8,7 +8,8 @@ public class InvalidResponse extends Response {
 
     @Override
     public String executeWithNextCommand() {
-        System.out.println("Invalid Response...");
+        System.out.println("Invalid Response: ");
+        System.out.println(arg);
         return null;
     }
 }

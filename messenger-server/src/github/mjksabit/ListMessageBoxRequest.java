@@ -24,7 +24,7 @@ public class ListMessageBoxRequest extends Request{
         for (int data : messageIds) {
             box = new JSONObject();
             box.put("id", data);
-            box.put("name", currentUser.getUsernameOfMessage(data, currentUser));
+            box.put("name", currentUser.getNameOfMessageWithUnreadCount(data, currentUser));
             boxes.put(box);
         }
 

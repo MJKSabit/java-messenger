@@ -1,21 +1,23 @@
 package github.mjksabit;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.*;
 
 public class User {
     private String username;
     private String password;
 
     private Map<Integer, MessageBox> messageBoxes;
+    private Map<Integer, Integer> unreadMessageCount;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
 
         messageBoxes = new LinkedHashMap<>();
+        unreadMessageCount = new HashMap<>();
     }
 
     public String getUsername() {
@@ -28,6 +30,7 @@ public class User {
 
     public void addMessageBox(MessageBox messageBox) {
         messageBoxes.put(messageBox.getId(), messageBox);
+        unreadMessageCount.put(messageBox.getId(), 0);
     }
 
     public ArrayList<Integer> getMessageBoxes() {
@@ -42,14 +45,48 @@ public class User {
         return -1;
     }
 
-    public String getUsernameOfMessage(int msgBoxId, User currentUser) {
+    public void moveToBottom(int messageBoxId) {
+        MessageBox messageBox = messageBoxes.get(messageBoxId);
+        messageBoxes.remove(messageBoxId);
+        messageBoxes.put(messageBoxId, messageBox);
+    }
+
+    public void addUnreadMessage(int messageBoxId) {
+        int value = unreadMessageCount.get(messageBoxId);
+        unreadMessageCount.put(messageBoxId, value+1);
+    }
+
+    public String getNameOfMessageWithUnreadCount(int msgBoxId, User currentUser) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(getNameOfMessage(msgBoxId, currentUser));
+        stringBuilder.append(" (").append(unreadMessageCount.get(msgBoxId)).append(")");
+
+        return stringBuilder.toString();
+    }
+
+    public String getNameOfMessage(int msgBoxId, User currentUser) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (User user : messageBoxes.get(msgBoxId).userList()) {
             if (user == currentUser) continue;
             stringBuilder.append(" [").append(user.getUsername()).append("]");
         }
-
         return stringBuilder.toString();
+    }
+
+    public MessageBox getMessageBox(int msgBoxId) {
+        if(messageBoxes.containsKey(msgBoxId))
+            return messageBoxes.get(msgBoxId);
+        return null;
+    }
+
+    public JSONObject getMessages(int msgBoxId) throws JSONException {
+        JSONObject object = new JSONObject();
+
+        object.put("name", getNameOfMessage(msgBoxId, this));
+        object.put("messages", messageBoxes.get(msgBoxId).getMessages());
+
+        return object;
     }
 }

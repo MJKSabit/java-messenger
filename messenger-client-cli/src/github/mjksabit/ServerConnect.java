@@ -43,6 +43,8 @@ public class ServerConnect {
 
                 boolean hasResponse = command.executeWithResponse();
 
+                commandText = "";
+
                 if(!hasResponse) continue;
 
                 Response response;
