@@ -13,6 +13,12 @@ public class NewMessageCommand extends Command {
 
     @Override
     boolean executeWithResponse() throws JSONException, IOException {
+        if(!userLoggedIn()){
+            System.out.println("Log in first!");
+            return false;
+        }
+
+
         setExpectedArgs(new String[] {
                 "Id", "Message"
         });

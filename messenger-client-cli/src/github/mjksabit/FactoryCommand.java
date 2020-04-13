@@ -1,7 +1,7 @@
 package github.mjksabit;
 
 public class FactoryCommand {
-    public static final String SEPERATOR = " --";
+    public static final String SEPERATOR = " ~";
 
     public static Command getCommand(String singleLineArgs) {
         String[] commandArray = singleLineArgs.split(SEPERATOR);
@@ -35,6 +35,9 @@ public class FactoryCommand {
                 break;
             case "newmsg":
                 command = new NewMessageCommand();
+                break;
+            case "showmsg":
+                command = new ShowMessageBoxCommand();
                 break;
             default:
                 command = new UnknownCommand();

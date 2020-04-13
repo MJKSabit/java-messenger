@@ -24,6 +24,6 @@ public class NewMessageRequest extends Request{
 
 
 
-        return "msg_sent"+"\n"+NO_JSON;
+        return "msg_sent"+"\n"+"{\"id\" : "+jsonObject.getInt("id")+" }";
     }
 }

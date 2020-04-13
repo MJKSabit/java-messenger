@@ -32,6 +32,9 @@ public class FactoryResponse {
             case "msg_sent":
                 created = new MessageSentResponse();
                 break;
+            case "msgbox":
+                created = new ShowMessageResponse();
+                break;
             default:
                 created = new InvalidResponse();
         }

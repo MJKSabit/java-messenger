@@ -56,15 +56,6 @@ public class User {
         unreadMessageCount.put(messageBoxId, value+1);
     }
 
-    public String getNameOfMessageWithUnreadCount(int msgBoxId, User currentUser) {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(getNameOfMessage(msgBoxId, currentUser));
-        stringBuilder.append(" (").append(unreadMessageCount.get(msgBoxId)).append(")");
-
-        return stringBuilder.toString();
-    }
-
     public String getNameOfMessage(int msgBoxId, User currentUser) {
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -81,7 +72,12 @@ public class User {
         return null;
     }
 
+    public int getUnreadCount(int msgBoxId) {
+        return unreadMessageCount.get(msgBoxId);
+    }
+
     public JSONObject getMessages(int msgBoxId) throws JSONException {
+        unreadMessageCount.put(msgBoxId, 0);
         JSONObject object = new JSONObject();
 
         object.put("name", getNameOfMessage(msgBoxId, this));

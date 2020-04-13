@@ -14,7 +14,7 @@ public class NewMessageBoxCommand extends Command{
     @Override
     boolean executeWithResponse() throws JSONException, IOException {
 
-        if (ServerConnect.username == null) {
+        if (!userLoggedIn()) {
             System.out.println("Log in first...");
             return false;
         }

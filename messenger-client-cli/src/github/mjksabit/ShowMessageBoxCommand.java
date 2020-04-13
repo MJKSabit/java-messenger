@@ -1,11 +1,10 @@
 package github.mjksabit;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
-public class LogOutCommand extends Command {
+public class ShowMessageBoxCommand extends Command{
     @Override
     void ADDED_TO_THE_FACTORY() {
         // true
@@ -17,9 +16,12 @@ public class LogOutCommand extends Command {
             logInPrompt();
             return false;
         }
-        ServerConnect.username = null;
 
-        sendRequest("log_out", new JSONObject("{}"));
+        setExpectedArgs(new String[] {
+                "MessageBoxId"
+        });
+
+        sendRequest("showmsg", "{\"id\": "+args[0]+"}");
         return true;
     }
 }

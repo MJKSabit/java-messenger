@@ -40,6 +40,10 @@ abstract public class Command {
         return ServerConnect.username != null;
     }
 
+    protected void logInPrompt() {
+        System.out.println("Log in First!");
+    }
+
     protected static void sendRequest (String requestText, JSONObject requestObject) throws IOException {
         sendRequest(requestText, requestObject.toString());
     }

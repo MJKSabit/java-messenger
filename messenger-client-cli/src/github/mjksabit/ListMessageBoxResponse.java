@@ -20,7 +20,9 @@ public class ListMessageBoxResponse extends Response {
         System.out.println("======================");
         for (int i=0; i<list.length(); i++) {
             line = list.getJSONObject(i);
-            System.out.println(line.getInt("id")+line.getString("name"));
+            System.out.println(line.getInt("id")+
+                    line.getString("name")+
+                    " ("+line.getInt("unread")+")");
         }
         System.out.println("=====================");
 

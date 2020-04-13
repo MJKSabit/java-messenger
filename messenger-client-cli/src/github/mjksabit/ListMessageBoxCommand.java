@@ -13,7 +13,7 @@ public class ListMessageBoxCommand extends Command{
     @Override
     boolean executeWithResponse() throws JSONException, IOException {
         if(!userLoggedIn()) {
-            System.out.println("Log in first...");
+            logInPrompt();
             return false;
         }
 

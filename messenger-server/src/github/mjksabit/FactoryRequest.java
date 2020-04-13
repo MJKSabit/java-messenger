@@ -28,6 +28,9 @@ public class FactoryRequest {
             case "new_msg":
                 created = new NewMessageRequest();
                 break;
+            case "showmsg":
+                created = new ShowMessageRequest();
+                break;
             default:
                 created = new InvalidRequest();
         }
