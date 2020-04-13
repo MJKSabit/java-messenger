@@ -12,10 +12,18 @@ abstract public class Command {
         serverOut = out;
     }
 
+    protected boolean userLoggedIn() {
+        return ServerConnect.username != null;
+    }
+
     protected static void sendRequest (String requestText, JSONObject requestObject) throws IOException {
+        sendRequest(requestText, requestObject.toString());
+    }
+
+    protected static void sendRequest (String requestText, String requestArguments) throws IOException {
         serverOut.write(requestText);
         serverOut.newLine();
-        serverOut.write(requestObject.toString());
+        serverOut.write(requestArguments);
         serverOut.newLine();
         serverOut.flush();
     }

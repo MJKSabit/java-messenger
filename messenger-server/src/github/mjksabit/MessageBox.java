@@ -13,8 +13,7 @@ public class MessageBox {
     }
 
     public MessageBox(User creator, User other) {
-        id = ++ID;
-
+        id = updateID();
         users = new ArrayList<>();
 
         users.add(creator);
@@ -22,5 +21,13 @@ public class MessageBox {
 
         creator.addMessageBox(this);
         other.addMessageBox(this);
+    }
+
+    private synchronized int updateID() {
+        return ++ID;
+    }
+
+    public ArrayList<User>  userList() {
+        return users;
     }
 }

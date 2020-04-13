@@ -22,6 +22,9 @@ public class FactoryRequest {
             case "new_msg_box":
                 created = new NewMessageBoxRequest();
                 break;
+            case "list_msg_box":
+                created = new ListMessageBoxRequest();
+                break;
             default:
                 created = new InvalidRequest();
         }

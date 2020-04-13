@@ -21,6 +21,8 @@ public class NewMessageBoxRequest extends Request{
             return "msgbox_create_failed"+"\n"+NO_JSON;
         }
 
+        // Check for duplicate, if so return
+
         MessageBox created = new MessageBox(creator, receiver);
 
         return "msgbox_create_success"+"\n"+

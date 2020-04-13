@@ -19,6 +19,9 @@ public class FactoryCommand {
             case "newmsgbox":
                 command = new NewMessageBoxCommand();
                 break;
+            case "listmsgbox":
+                command = new ListMessageBoxCommand();
+                break;
             default:
                 command = new UnknownCommand();
         }
