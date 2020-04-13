@@ -12,6 +12,12 @@ abstract public class Command {
         serverOut = out;
     }
 
+    protected String[] args;
+
+    public void setArgs(String[] args) {
+        this.args = args;
+    }
+
     protected boolean userLoggedIn() {
         return ServerConnect.username != null;
     }
