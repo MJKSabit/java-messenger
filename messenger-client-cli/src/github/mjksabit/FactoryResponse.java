@@ -20,6 +20,12 @@ public class FactoryResponse {
             case "logged_out":
                 created = new LogOutResponse();
                 break;
+            case "msgbox_create_success":
+                created = new MessageBoxSuccessResponse();
+                break;
+            case "msgbox_create_failed":
+                created = new MessageBoxFailedResponse();
+                break;
             default:
                 created = new InvalidResponse();
         }

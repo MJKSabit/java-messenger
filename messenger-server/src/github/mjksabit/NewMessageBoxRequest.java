@@ -17,11 +17,13 @@ public class NewMessageBoxRequest extends Request{
         User creator = context.currentUser;
         User receiver =  Users.getUser(object.getString("other"));
 
-        if (receiver == null && receiver == creator) {
+        if (receiver == null || receiver == creator) {
             return "msgbox_create_failed"+"\n"+NO_JSON;
         }
 
+        MessageBox created = new MessageBox(creator, receiver);
+
         return "msgbox_create_success"+"\n"+
-                "{\"box_id\" : 0 }";
+                "{\"id\" : "+created.getId()+" }";
     }
 }
