@@ -7,7 +7,8 @@ public class NewUserSuccessResponse extends Response{
     }
 
     @Override
-    public void execute() {
-        System.out.println("Created User Successfully! Try Logging in...");
+    public String executeWithNextCommand() {
+        System.out.println("Created User Successfully!");
+        return null;
     }
 }

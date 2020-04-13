@@ -34,11 +34,12 @@ public class User {
         return new ArrayList<>(messageBoxes.keySet());
     }
 
-    public String getUsernameOfMessage(int msgBoxId) {
+    public String getUsernameOfMessage(int msgBoxId, User currentUser) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (User user : messageBoxes.get(msgBoxId).userList()) {
-            stringBuilder.append(" ["+user.getUsername()+"]");
+            if (user == currentUser) continue;
+            stringBuilder.append(" [").append(user.getUsername()).append("]");
         }
 
         return stringBuilder.toString();

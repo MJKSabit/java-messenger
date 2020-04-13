@@ -9,7 +9,8 @@ public class SignUpErrorResponse extends Response{
     }
 
     @Override
-    public void execute() throws JSONException {
+    public String executeWithNextCommand() throws JSONException {
         System.out.println("Username/Password do not match!!!");
+        return null;
     }
 }

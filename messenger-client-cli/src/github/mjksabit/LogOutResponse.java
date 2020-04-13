@@ -10,8 +10,9 @@ public class LogOutResponse extends Response{
     }
 
     @Override
-    public void execute() throws JSONException {
+    public String executeWithNextCommand() throws JSONException {
         JSONObject jsonObject = new JSONObject(arg);
         System.out.println(jsonObject.getString("username") + " logged Out successfully");
+        return null;
     }
 }

@@ -9,7 +9,8 @@ public class MessageBoxFailedResponse extends Response{
     }
 
     @Override
-    public void execute() throws JSONException {
+    public String executeWithNextCommand() throws JSONException {
         System.out.println("Message Box could not be created...");
+        return "listmsgbox";
     }
 }

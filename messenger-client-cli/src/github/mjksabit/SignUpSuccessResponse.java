@@ -11,10 +11,12 @@ public class SignUpSuccessResponse extends Response {
     }
 
     @Override
-    public void execute() throws JSONException {
+    public String executeWithNextCommand() throws JSONException {
         JSONObject object = new JSONObject(arg);
         ServerConnect.username = object.getString("username");
 
         System.out.println(String.format("User (%s) Login Successful...", ServerConnect.username));
+
+        return "listmsgbox";
     }
 }

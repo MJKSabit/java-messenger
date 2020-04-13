@@ -10,9 +10,11 @@ public class MessageBoxSuccessResponse extends Response{
     }
 
     @Override
-    public void execute() throws JSONException {
+    public String executeWithNextCommand() throws JSONException {
         JSONObject msgBox = new JSONObject(arg);
 
         System.out.println("Message Box Created with ID: "+msgBox.getInt("id"));
+
+        return "listmsgbox";
     }
 }

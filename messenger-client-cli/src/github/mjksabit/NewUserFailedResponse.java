@@ -7,7 +7,8 @@ public class NewUserFailedResponse extends Response {
     }
 
     @Override
-    public void execute() {
+    public String executeWithNextCommand() {
         System.out.println("Could not create new user, username not available...");
+        return null;
     }
 }

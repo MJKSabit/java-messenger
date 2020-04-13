@@ -16,5 +16,5 @@ abstract public class Response {
         this.arg = arg;
     }
 
-    abstract public void execute() throws JSONException;
+    abstract public String executeWithNextCommand() throws JSONException;
 }

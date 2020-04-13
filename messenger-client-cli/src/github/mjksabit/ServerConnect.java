@@ -32,12 +32,12 @@ public class ServerConnect {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(outputStream));
             Command.setServerOut(out);
 
-            String commandText;
+            String commandText = null;
             String responseText, responseObject;
             Command command;
 
             do {
-                commandText = scanner.nextLine();
+                if (commandText == null) commandText = scanner.nextLine();
 
                 command = FactoryCommand.getCommand(commandText);
 
@@ -54,7 +54,7 @@ public class ServerConnect {
 
                 response = FactoryResponse.getResponse(responseText, responseObject);
 
-                response.execute();
+                commandText = response.executeWithNextCommand();
 
             } while (!(command instanceof ExitCommand));
 

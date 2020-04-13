@@ -11,7 +11,7 @@ public class ListMessageBoxResponse extends Response {
     }
 
     @Override
-    public void execute() throws JSONException {
+    public String executeWithNextCommand() throws JSONException {
         JSONArray list = new JSONArray(arg);
         JSONObject line;
 
@@ -23,5 +23,7 @@ public class ListMessageBoxResponse extends Response {
             System.out.println(line.getInt("id")+line.getString("name"));
         }
         System.out.println("=====================");
+
+        return null;
     }
 }

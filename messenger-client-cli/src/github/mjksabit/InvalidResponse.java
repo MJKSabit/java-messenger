@@ -7,7 +7,8 @@ public class InvalidResponse extends Response {
     }
 
     @Override
-    public void execute() {
+    public String executeWithNextCommand() {
         System.out.println("Invalid Response...");
+        return null;
     }
 }
