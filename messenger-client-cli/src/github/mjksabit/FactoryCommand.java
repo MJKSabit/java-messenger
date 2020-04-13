@@ -10,11 +10,14 @@ public class FactoryCommand {
             case "signup":
                 command = new SignUpCommand();
                 break;
-            case "signin":
+            case "login":
                 command = new SignInCommand();
                 break;
             case "logout":
                 command = new LogOutCommand();
+                break;
+            case "newmsgbox":
+                command = new NewMessageBoxCommand();
                 break;
             default:
                 command = new UnknownCommand();

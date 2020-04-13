@@ -19,6 +19,9 @@ public class FactoryRequest {
             case "log_out":
                 created = new LogOutRequest();
                 break;
+            case "new_msg_box":
+                created = new NewMessageBoxRequest();
+                break;
             default:
                 created = new InvalidRequest();
         }

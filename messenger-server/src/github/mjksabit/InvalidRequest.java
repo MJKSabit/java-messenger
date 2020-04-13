@@ -8,6 +8,10 @@ public class InvalidRequest extends Request {
 
     @Override
     public String handle() {
+
+        System.out.print("Invalid Arguments: ");
+        System.out.println(arg);
+
         return "invalid\n"+
                 NO_JSON;
     }
