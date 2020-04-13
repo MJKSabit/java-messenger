@@ -34,6 +34,14 @@ public class User {
         return new ArrayList<>(messageBoxes.keySet());
     }
 
+    public int checkMessageExist(User other) {
+        for (int messageBoxId : messageBoxes.keySet()){
+            MessageBox messageBox = messageBoxes.get(messageBoxId);
+            if (messageBox.userList().contains(other)) return messageBoxId;
+        }
+        return -1;
+    }
+
     public String getUsernameOfMessage(int msgBoxId, User currentUser) {
         StringBuilder stringBuilder = new StringBuilder();
 

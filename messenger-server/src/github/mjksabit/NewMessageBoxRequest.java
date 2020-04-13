@@ -21,7 +21,10 @@ public class NewMessageBoxRequest extends Request{
             return "msgbox_create_failed"+"\n"+NO_JSON;
         }
 
-        // Check for duplicate, if so return
+        int index = creator.checkMessageExist(receiver);
+
+        if(index!=-1) return "msgbox_create_success"+"\n"+
+                "{\"id\" : "+index+"}";
 
         MessageBox created = new MessageBox(creator, receiver);
 
