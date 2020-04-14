@@ -69,9 +69,10 @@ public class ServerConnect {
 //
 //            in.close();
 //            out.close();
-//
+            controller.showNotification("Connection Successful...");
         } catch (IOException e) {
             e.printStackTrace();
+            controller.showNotification("Connection Failed...");
         } finally {
 //            try {
 //                if(inputStream!=null) inputStream.close();
@@ -82,7 +83,7 @@ public class ServerConnect {
 //            }
         }
 
-        controller.showNotification("Connection Successful...");
+
 
     }
 

@@ -27,18 +27,18 @@ public class FactoryCommand {
             case "logout":
                 command = new LogOutCommand();
                 break;
-//            case "newmsgbox":
-//                command = new NewMessageBoxCommand();
-//                break;
+            case "newmsgbox":
+                command = new NewMessageBoxCommand();
+                break;
             case "listmsgbox":
                 command = new ListMessageBoxCommand();
                 break;
 //            case "newmsg":
 //                command = new NewMessageCommand();
 //                break;
-//            case "showmsg":
-//                command = new ShowMessageBoxCommand();
-//                break;
+            case "showmsg":
+                command = new ShowMessageBoxCommand();
+                break;
             default:
                 command = new UnknownCommand();
         }

@@ -6,12 +6,14 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -55,9 +57,25 @@ public class Controller {
         serverConnectThread.submit(() -> connection = new ServerConnect());
         ServerConnect.controller = this;
 
+        messenger_main.setEffect(new GaussianBlur());
+        pane_log.setVisible(true);
         showNotification("Application Started");
 
         msgbox_list.setItems(msgboxDataProvider);
+        msgbox_list.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                String selected = msgbox_list.getSelectionModel().getSelectedItem().toString();
+                commandExecutor("showmsg" , selected.split(" ")[0]);
+//                System.out.println(selected.split(" ")[0]);
+            }
+        });
+    }
+
+    @FXML
+    TextField txt_newmsgbox;
+    public void newMsgBox() {
+        commandExecutor("newmsgbox", txt_newmsgbox.getText());
     }
 
     public void switchToMessenger() {
@@ -85,14 +103,12 @@ public class Controller {
         messageUpdateThread.submit(() -> {
             while (logged_in) {
                 connection.executeCommand("listmsgbox");
-                System.out.println("ON");
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     break;
                 }
             }
-            System.out.println("Out of loop");
         });
     }
 
@@ -104,7 +120,6 @@ public class Controller {
 
     @FXML
     public void exitApplication(ActionEvent event) {
-        System.out.println("here");
         Platform.exit();
     }
 

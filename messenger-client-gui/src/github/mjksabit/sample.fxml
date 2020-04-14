@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -27,6 +26,12 @@
                   <VBox fx:id="listview_msgbox" prefHeight="400.0" prefWidth="150.0" BorderPane.alignment="CENTER">
                      <children>
                         <ListView fx:id="msgbox_list" prefHeight="374.0" prefWidth="122.0" />
+                        <HBox prefHeight="34.0" prefWidth="150.0">
+                           <children>
+                              <TextField fx:id="txt_newmsgbox" prefHeight="0.0" prefWidth="121.0" promptText="User (New Message)" />
+                              <Button mnemonicParsing="false" onAction="#newMsgBox" text="+" />
+                           </children>
+                        </HBox>
                         <Text fx:id="show_username_txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                            <font>
                               <Font size="14.0" />
@@ -62,11 +67,8 @@
                </center>
             </BorderPane>
          </children>
-         <effect>
-            <GaussianBlur />
-         </effect>
       </Pane>
-      <Pane fx:id="pane_log" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
+      <Pane fx:id="pane_log" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);" visible="false">
          <children>
             <GridPane alignment="CENTER" layoutX="130.0" layoutY="135.0" style="-fx-background-color: rgba(255,255,255, 1); -fx-padding: 20px; -fx-background-radius: 10px;">
               <columnConstraints>
