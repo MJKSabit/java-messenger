@@ -1,5 +1,6 @@
 package github.mjksabit;
 
+import javafx.application.Platform;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,21 +13,24 @@ public class ShowMessageResponse extends Response{
 
     @Override
     public String executeWithNextCommand() throws JSONException {
+
         JSONObject object = new JSONObject(arg);
 
-        System.out.println("=========================");
         String msgBoxName = object.getString("name");
-        System.out.println(msgBoxName);
+
+        Platform.runLater(()-> {
+            ServerConnect.controller.setMessageBoxName(msgBoxName);
+            ServerConnect.controller.messages.clear();
+        });
 
         JSONArray messages = object.getJSONArray("messages");
         JSONObject message;
-        System.out.println("=========================");
+
         for (int i=0; i<messages.length(); i++) {
             message = messages.getJSONObject(i);
-            System.out.println(message.getString("sender")+":"+
-                    message.getString("text"));
+            String msgText = message.getString("sender")+": "+ message.getString("text");
+            ServerConnect.controller.messages.add(msgText);
         }
-        System.out.println("=========================");
 
         return null;
     }

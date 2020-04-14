@@ -50,7 +50,6 @@ public class Controller {
     ListView msgbox_list;
     public ObservableList<String> msgboxDataProvider = FXCollections.observableArrayList();
 
-
     @FXML
     public void initialize() {
         serverConnectThread = Executors.newFixedThreadPool(1);
@@ -92,17 +91,26 @@ public class Controller {
         messageUpdateThread.shutdown();
     }
 
-//
-//    public void updateMessageBoxRequest() {
-//        messageUpdateThread
-//    }
+
+    @FXML
+    ListView msgShowList;
+    public ObservableList<String> messages = FXCollections.observableArrayList();
+
+    @FXML
+    Text msgbox_name;
+    public void setMessageBoxName(String messageBoxName) {
+        msgbox_name.setText(messageBoxName);
+    }
 
     public volatile boolean logged_in = false;
-    ExecutorService messageUpdateThread = Executors.newFixedThreadPool(2);
+    public volatile int msgBoxId = 0;
+    ExecutorService messageUpdateThread = Executors.newFixedThreadPool(1);
     public void updateMessagesListRequest() {
         messageUpdateThread.submit(() -> {
             while (logged_in) {
                 connection.executeCommand("listmsgbox");
+                if (msgBoxId != 0)
+                    connection.executeCommand("showmsg"+SEPERATOR+msgBoxId);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

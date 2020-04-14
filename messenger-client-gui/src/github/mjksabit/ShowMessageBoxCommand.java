@@ -21,7 +21,9 @@ public class ShowMessageBoxCommand extends Command{
                 "MessageBoxId"
         });
 
+        ServerConnect.controller.msgBoxId = Integer.parseInt(args[0]);
         sendRequest("showmsg", "{\"id\": "+args[0]+"}");
+
         return true;
     }
 }
