@@ -1,4 +1,4 @@
-package sample;
+package github.mjksabit;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,10 +8,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Messenger");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
