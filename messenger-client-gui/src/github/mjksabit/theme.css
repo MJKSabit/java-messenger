@@ -1,0 +1,60 @@
+#show_username_txt, #msgbox_name {
+    -fx-fill : #CfCfCf;
+}
+
+#txt_newmsgbox, #txt_password, #txt_username, #messageText {
+    -fx-background-color: #4f4f4f;
+    -fx-background-radius: 10px;
+    -fx-text-fill: #dfdfdf;
+    -fx-prompt-text-fill: #bfbfbf;
+}
+
+#txt_newmsgbox:focused, #txt_password:focused, #txt_username:focused, #messageText:focused {
+    -fx-effect: dropshadow( gaussian , #4f4f4f , 10 , .3 , 0 , 0 );
+}
+
+.root {
+    -fx-font-size: 12px;
+    -fx-font-family: sans-serif;
+    -fx-background-color: #3f3f3f;
+    -fx-fill: #1f1f1f;
+}
+
+#notification_container {
+    -fx-background-color: #1f1f1fCC;
+    -fx-background-radius: 10px;
+}
+
+#notification_text {
+    -fx-fill: #cfcfbf;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-background-color: #1f1f1f;
+    -fx-border-color: #5050df;
+    -fx-background-radius: 40px;
+    -fx-text-fill: #cfcfaf;
+    -fx-border-width: 2px;
+    -fx-border-radius: 40px;
+}
+
+.button:hover, .button:focused {
+    -fx-text-fill: #dfdfdf;
+    -fx-background-color: #5050df;
+    -fx-effect: dropshadow( gaussian , #5050df , 10 , .3 , 0 , 0 );
+}
+
+.list-view .list-cell {
+    -fx-background-color: #3f3f3f;
+    -fx-text-fill: #bfbfbf;
+}
+
+#msgbox_list .list-cell:hover {
+    -fx-background-color: #5050df;
+    -fx-text-fill: #dfdfdf;
+}
+
+VBox, HBox {
+    -fx-padding: 0px;
+}
