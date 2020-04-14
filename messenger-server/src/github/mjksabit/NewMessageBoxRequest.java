@@ -10,7 +10,7 @@ public class NewMessageBoxRequest extends Request{
     }
 
     @Override
-    public String handle() throws JSONException {
+    public synchronized String handle() throws JSONException {
 
         JSONObject object = new JSONObject(arg);
 

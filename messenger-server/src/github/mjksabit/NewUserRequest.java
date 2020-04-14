@@ -10,7 +10,7 @@ public class NewUserRequest extends Request {
     }
 
     @Override
-    public String handle() {
+    public synchronized String handle() {
         try {
             JSONObject userInfo = new JSONObject(arg);
 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Users {
-    private static Map<String, User> users = new HashMap<>();
+    private volatile static Map<String, User> users = new HashMap<>();
 
     public synchronized static boolean addUser(String username, String password) {
         if (userExists(username)) return false;

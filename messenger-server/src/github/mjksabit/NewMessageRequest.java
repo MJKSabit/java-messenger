@@ -10,7 +10,7 @@ public class NewMessageRequest extends Request{
     }
 
     @Override
-    public String handle() throws JSONException {
+    public synchronized String handle() throws JSONException {
         JSONObject jsonObject = new JSONObject(arg);
 
         MessageBox messageBox = context.currentUser.getMessageBox(jsonObject.getInt("id"));
