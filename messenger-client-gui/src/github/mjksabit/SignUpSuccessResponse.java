@@ -18,7 +18,7 @@ public class SignUpSuccessResponse extends Response {
         sout(String.format("Welcome %s!", ServerConnect.username));
 
         ServerConnect.controller.switchToMessenger();
-        ServerConnect.controller.setUsername(ServerConnect.username);
+
 
         return null;
     }

@@ -69,6 +69,8 @@ public class Controller {
 //                System.out.println(selected.split(" ")[0]);
             }
         });
+
+        msgShowList.setItems(messages);
     }
 
     @FXML
@@ -79,8 +81,14 @@ public class Controller {
 
     public void switchToMessenger() {
         logged_in = true;
+        msgBoxId = 0;
         messenger_main.setEffect(null);
         pane_log.setVisible(false);
+        System.out.println(ServerConnect.username);
+        setUsername(ServerConnect.username);
+//        commandExecutor("listmsgbox");
+        msgbox_name.setText("");
+        Platform.runLater(() -> messages.clear());
         updateMessagesListRequest();
     }
 
@@ -97,6 +105,13 @@ public class Controller {
     public ObservableList<String> messages = FXCollections.observableArrayList();
 
     @FXML
+    TextField messageText;
+    public void sendNewMessage() {
+        Integer id = msgBoxId;
+        commandExecutor("newmsg", id.toString(), messageText.getText());
+    }
+
+    @FXML
     Text msgbox_name;
     public void setMessageBoxName(String messageBoxName) {
         msgbox_name.setText(messageBoxName);
@@ -104,8 +119,11 @@ public class Controller {
 
     public volatile boolean logged_in = false;
     public volatile int msgBoxId = 0;
-    ExecutorService messageUpdateThread = Executors.newFixedThreadPool(1);
+    ExecutorService messageUpdateThread;
+
     public void updateMessagesListRequest() {
+        messageUpdateThread = Executors.newFixedThreadPool(1);
+
         messageUpdateThread.submit(() -> {
             while (logged_in) {
                 connection.executeCommand("listmsgbox");

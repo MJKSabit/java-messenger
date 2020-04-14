@@ -29,7 +29,7 @@ public class ShowMessageResponse extends Response{
         for (int i=0; i<messages.length(); i++) {
             message = messages.getJSONObject(i);
             String msgText = message.getString("sender")+": "+ message.getString("text");
-            ServerConnect.controller.messages.add(msgText);
+            Platform.runLater( () -> ServerConnect.controller.messages.add(msgText));
         }
 
         return null;

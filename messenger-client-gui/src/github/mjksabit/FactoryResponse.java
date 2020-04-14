@@ -29,9 +29,9 @@ public class FactoryResponse {
             case "list_msg_box":
                 created = new ListMessageBoxResponse();
                 break;
-//            case "msg_sent":
-//                created = new MessageSentResponse();
-//                break;
+            case "msg_sent":
+                created = new MessageSentResponse();
+                break;
             case "msgbox":
                 created = new ShowMessageResponse();
                 break;

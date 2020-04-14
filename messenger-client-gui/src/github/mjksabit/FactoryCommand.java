@@ -33,9 +33,9 @@ public class FactoryCommand {
             case "listmsgbox":
                 command = new ListMessageBoxCommand();
                 break;
-//            case "newmsg":
-//                command = new NewMessageCommand();
-//                break;
+            case "newmsg":
+                command = new NewMessageCommand();
+                break;
             case "showmsg":
                 command = new ShowMessageBoxCommand();
                 break;

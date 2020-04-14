@@ -58,8 +58,8 @@
                         <ListView fx:id="msgShowList" prefHeight="438.0" prefWidth="450.0" />
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0">
                            <children>
-                              <TextField prefHeight="247.0" prefWidth="375.0" promptText="Type Message" />
-                              <Button minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" prefHeight="75.0" text="Send" />
+                              <TextField fx:id="messageText" prefHeight="247.0" prefWidth="375.0" promptText="Type Message" />
+                              <Button minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#sendNewMessage" prefHeight="75.0" text="Send" />
                            </children>
                         </HBox>
                      </children>
