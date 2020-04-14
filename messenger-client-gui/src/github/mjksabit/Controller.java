@@ -3,9 +3,12 @@ package github.mjksabit;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
@@ -41,6 +44,10 @@ public class Controller {
     @FXML
     Pane pane_log;
 
+    @FXML
+    ListView msgbox_list;
+    public ObservableList<String> msgboxDataProvider = FXCollections.observableArrayList();
+
 
     @FXML
     public void initialize() {
@@ -50,6 +57,7 @@ public class Controller {
 
         showNotification("Application Started");
 
+        msgbox_list.setItems(msgboxDataProvider);
     }
 
     public void switchToMessenger() {
@@ -143,6 +151,7 @@ public class Controller {
     public void logout() {
         switchFromMessenger();
         commandExecutor("logout");
+        msgboxDataProvider.removeAll();
     }
 
 

@@ -26,9 +26,9 @@ public class FactoryResponse {
 //            case "msgbox_create_failed":
 //                created = new MessageBoxFailedResponse();
 //                break;
-//            case "list_msg_box":
-//                created = new ListMessageBoxResponse();
-//                break;
+            case "list_msg_box":
+                created = new ListMessageBoxResponse();
+                break;
 //            case "msg_sent":
 //                created = new MessageSentResponse();
 //                break;
