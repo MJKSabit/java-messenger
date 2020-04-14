@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -56,10 +56,16 @@
                            <cursor>
                               <Cursor fx:constant="DISAPPEAR" />
                            </cursor></ListView>
-                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0">
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0">
                            <children>
-                              <TextField fx:id="messageText" onAction="#sendNewMessage" prefHeight="247.0" prefWidth="375.0" promptText="Type Message" />
-                              <Button minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#sendNewMessage" prefHeight="75.0" text="Send" />
+                              <TextField fx:id="messageText" onAction="#sendNewMessage" prefHeight="45.0" prefWidth="355.0" promptText="Type Message" style="-fx-background-radius: 10px 0px 0px 10px;">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin></TextField>
+                              <Button minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#sendNewMessage" prefHeight="45.0" prefWidth="75.0" style="-fx-background-radius: 0px 20px 20px 0px; -fx-border-radius: 0px 20px 20px 0px;" text="Send" />
                            </children>
                         </HBox>
                      </children>
@@ -68,7 +74,7 @@
             </BorderPane>
          </children>
       </Pane>
-      <Pane fx:id="pane_log" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
+      <Pane fx:id="pane_log" prefHeight="400.0" prefWidth="600.0" visible="false">
          <children>
             <GridPane alignment="CENTER" layoutX="130.0" layoutY="135.0" style="-fx-padding: 20px; -fx-background-radius: 10px; -fx-background-color: #1f1f1f;">
               <columnConstraints>
@@ -89,16 +95,19 @@
                   <Button fx:id="btn_login" alignment="CENTER_RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#login" text="Log in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                   <Button fx:id="btn_signup" mnemonicParsing="false" onAction="#signUp" text="Sign Up" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
                </children>
+               <effect>
+                  <DropShadow color="WHITE" height="50.0" radius="24.5" width="50.0" />
+               </effect>
             </GridPane>
          </children>
-         <effect>
-            <InnerShadow />
-         </effect>
       </Pane>
       <VBox fx:id="notification_container" alignment="CENTER" maxHeight="40.0" maxWidth="400.0" minHeight="25.0" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" StackPane.alignment="TOP_CENTER">
          <children>
             <Text fx:id="notification_text" strokeType="OUTSIDE" strokeWidth="0.0" text="Notification Text" textAlignment="CENTER" wrappingWidth="390.0" />
          </children>
+         <effect>
+            <DropShadow color="WHITE" height="50.0" radius="24.5" width="50.0" />
+         </effect>
          <StackPane.margin>
             <Insets top="10.0" />
          </StackPane.margin>

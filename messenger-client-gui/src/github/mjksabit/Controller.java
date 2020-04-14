@@ -8,16 +8,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 import java.util.concurrent.Executor;
@@ -65,12 +63,32 @@ public class Controller {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 String selected = msgbox_list.getSelectionModel().getSelectedItem().toString();
-                commandExecutor("showmsg" , selected.split(" ")[0]);
-//                System.out.println(selected.split(" ")[0]);
+                if ((selected!=null || selected!="") && selected.contains(" "))
+                    commandExecutor("showmsg" , selected.split(" ")[0]);
             }
         });
 
         msgShowList.setItems(messages);
+        /*msgShowList.setCellFactory(
+                new Callback<ListView<String>, ListCell<String>>() {
+                    @Override
+                    public ListCell<String> call(ListView<String> list) {
+                        return new ListCell<String>(){
+                            @Override
+                            protected void updateItem(String s, boolean b) {
+                                super.updateItem(s, b);
+                                if (s != null) {
+                                    Text text = new Text(s);
+                                    text.setWrappingWidth(400);
+                                    text.setStyle("-fx-background-color: #3f3f3f; -fx-fill: #cfcfaf; -fx-border-color: #5050df;" +
+                                            "-fx-border-radius: 5px;");
+                                    setGraphic(text);
+                                }
+                            }
+                        };
+                    }
+                }
+        );*/
     }
 
     @FXML
