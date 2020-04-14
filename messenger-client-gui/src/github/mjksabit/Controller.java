@@ -109,6 +109,7 @@ public class Controller {
     public void sendNewMessage() {
         Integer id = msgBoxId;
         commandExecutor("newmsg", id.toString(), messageText.getText());
+        messageText.setText("");
     }
 
     @FXML

@@ -25,11 +25,11 @@ abstract public class Command {
 //            }
 //        }
 //        else {
-            System.out.println("Arguments:");
-            for (int i=0; i<argDetails.length; i++) {
-                System.out.println(argDetails[i]+": "+args[i]);
+//            System.out.println("Arguments:");
+//            for (int i=0; i<argDetails.length; i++) {
+//                System.out.println(argDetails[i]+": "+args[i]);
 //            }
-        }
+//        }
     }
 
     public void setArgs(String[] args) {

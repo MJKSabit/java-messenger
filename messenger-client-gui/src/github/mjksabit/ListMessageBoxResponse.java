@@ -33,7 +33,8 @@ public class ListMessageBoxResponse extends Response {
             String name = line.getString("name");
             int newMsg = line.getInt("unread");
 
-            Platform.runLater(() -> observableList.add(id+" "+name+ " ("+newMsg+")"));
+            Platform.runLater(() -> observableList.add(id+" "+name+
+                    (newMsg!=0 ? " ("+newMsg+")" : "" ))); // Do not show ( 0 )
             ;
 
 //            System.out.println(line.getInt("id")+

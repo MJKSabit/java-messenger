@@ -61,7 +61,7 @@ public class User {
 
         for (User user : messageBoxes.get(msgBoxId).userList()) {
             if (user == currentUser) continue;
-            stringBuilder.append(" [").append(user.getUsername()).append("]");
+            stringBuilder.append(user.getUsername());
         }
         return stringBuilder.toString();
     }
