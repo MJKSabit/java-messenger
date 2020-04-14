@@ -18,9 +18,9 @@ public class FactoryCommand {
 //            case "exit":
 //                command = new ExitCommand();
 //                break;
-//            case "signup":
-//                command = new SignUpCommand();
-//                break;
+            case "signup":
+                command = new SignUpCommand();
+                break;
 //            case "login":
 //                command = new SignInCommand();
 //                break;

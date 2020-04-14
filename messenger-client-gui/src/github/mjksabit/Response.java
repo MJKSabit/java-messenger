@@ -10,6 +10,10 @@ abstract public class Response {
     protected static String NO_JSON = "{}";
     protected String arg;
 
+    protected void sout(String notificationText) {
+        ServerConnect.controller.showNotification(notificationText);
+    }
+
     abstract void ADDED_TO_THE_FACTORY();
 
     public void setArg(String arg) {

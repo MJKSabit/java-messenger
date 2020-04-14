@@ -88,6 +88,7 @@ public class ServerConnect {
 
     public void executeCommand(String commandText) {
         if (commandText == null) return;
+        System.out.println(commandText);
 
         String responseText, responseObject;
         Response response;

@@ -5,12 +5,12 @@ public class FactoryResponse {
 
     public static Response getResponse(String type, String arg) {
         switch (type) {
-//            case "new_user_success":
-//                created = new NewUserSuccessResponse();
-//                break;
-//            case "new_user_failed":
-//                created = new NewUserFailedResponse();
-//                break;
+            case "new_user_success":
+                created = new NewUserSuccessResponse();
+                break;
+            case "new_user_failed":
+                created = new NewUserFailedResponse();
+                break;
 //            case "login_success":
 //                created = new SignUpSuccessResponse();
 //                break;
@@ -35,11 +35,11 @@ public class FactoryResponse {
 //            case "msgbox":
 //                created = new ShowMessageResponse();
 //                break;
-//            default:
-//                created = new InvalidResponse();
+            default:
+                created = new InvalidResponse();
         }
 
-//        created.setArg(arg);
+        created.setArg(arg);
 
         return created;
     }

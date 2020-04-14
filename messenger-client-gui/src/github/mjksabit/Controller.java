@@ -19,6 +19,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class Controller {
 
+    final static String SEPERATOR = " ~";
     public static ServerConnect connection = null;
     private ExecutorService serverConnectThread;
 
@@ -71,10 +72,13 @@ public class Controller {
     }
 
     public void signUp() {
-        System.out.println(txt_username.getText());
-        System.out.println(txt_password.getText());
+        String username = txt_username.getText();
+        String password = txt_password.getText();
 
-        showNotification(txt_username.getText());
+        serverConnectThread.submit(() -> {
+           connection.executeCommand("signup"+SEPERATOR+
+                   username+SEPERATOR+password);
+        });
 
         resetUsername();
     }
