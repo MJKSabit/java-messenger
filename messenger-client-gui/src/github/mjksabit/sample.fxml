@@ -18,8 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="github.mjksabit.Controller">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="github.mjksabit.Controller">
    <children>
       <Pane fx:id="messenger_main" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -28,6 +27,14 @@
                   <VBox fx:id="listview_msgbox" prefHeight="400.0" prefWidth="150.0" BorderPane.alignment="CENTER">
                      <children>
                         <ListView prefHeight="374.0" prefWidth="122.0" />
+                        <Text fx:id="show_username_txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" />
+                           </VBox.margin>
+                        </Text>
                         <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Log Out" />
                      </children>
                   </VBox>
@@ -39,6 +46,9 @@
                            <font>
                               <Font name="System Bold" size="26.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
                         </Text>
                         <ListView prefHeight="438.0" prefWidth="450.0" />
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0">
@@ -56,7 +66,7 @@
             <GaussianBlur />
          </effect>
       </Pane>
-      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
+      <Pane fx:id="pane_log" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
          <children>
             <GridPane alignment="CENTER" layoutX="130.0" layoutY="135.0" style="-fx-background-color: rgba(255,255,255, 1); -fx-padding: 20px; -fx-background-radius: 10px;">
               <columnConstraints>
@@ -74,7 +84,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" GridPane.rowIndex="1" />
                   <TextField fx:id="txt_username" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" />
                   <PasswordField fx:id="txt_password" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
-                  <Button fx:id="btn_login" alignment="CENTER_RIGHT" defaultButton="true" mnemonicParsing="false" text="Log in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Button fx:id="btn_login" alignment="CENTER_RIGHT" defaultButton="true" mnemonicParsing="false" onAction="#login" text="Log in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                   <Button fx:id="btn_signup" mnemonicParsing="false" onAction="#signUp" text="Sign Up" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
                </children>
             </GridPane>

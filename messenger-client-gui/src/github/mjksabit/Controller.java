@@ -8,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -34,6 +37,12 @@ public class Controller {
     Text notification_text;
 
     @FXML
+    Pane messenger_main;
+    @FXML
+    Pane pane_log;
+
+
+    @FXML
     public void initialize() {
         serverConnectThread = Executors.newFixedThreadPool(1);
         serverConnectThread.submit(() -> connection = new ServerConnect());
@@ -41,6 +50,22 @@ public class Controller {
 
         showNotification("Application Started");
 
+    }
+
+    public void switchToMessenger() {
+        messenger_main.setEffect(null);
+        pane_log.setVisible(false);
+    }
+
+    public void switchFromMessenger() {
+        messenger_main.setEffect(new GaussianBlur());
+        pane_log.setVisible(true);
+    }
+
+    @FXML
+    Text show_username_txt;
+    public void setUsername(String Username) {
+        show_username_txt.setText(Username);
     }
 
     @FXML
@@ -71,16 +96,22 @@ public class Controller {
         txt_password.setText("");
     }
 
+    private void commandExecutor(String... args) {
+        StringBuilder stringBuilder = new StringBuilder(args[0]);
+
+        for (int i=1; i<args.length; i++)
+            stringBuilder.append(SEPERATOR).append(args[i]);
+
+        serverConnectThread.submit(() -> connection.executeCommand(stringBuilder.toString()));
+    }
+
     public void signUp() {
-        String username = txt_username.getText();
-        String password = txt_password.getText();
-
-        serverConnectThread.submit(() -> {
-           connection.executeCommand("signup"+SEPERATOR+
-                   username+SEPERATOR+password);
-        });
-
+        commandExecutor("signup", txt_username.getText(), txt_password.getText());
         resetUsername();
+    }
+
+    public void login() {
+        commandExecutor("login", txt_username.getText(), txt_password.getText());
     }
 
 

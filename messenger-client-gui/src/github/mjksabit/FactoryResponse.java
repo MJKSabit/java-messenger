@@ -11,12 +11,12 @@ public class FactoryResponse {
             case "new_user_failed":
                 created = new NewUserFailedResponse();
                 break;
-//            case "login_success":
-//                created = new SignUpSuccessResponse();
-//                break;
-//            case "login_error":
-//                created = new SignUpErrorResponse();
-//                break;
+            case "login_success":
+                created = new SignUpSuccessResponse();
+                break;
+            case "login_error":
+                created = new SignUpErrorResponse();
+                break;
 //            case "logged_out":
 //                created = new LogOutResponse();
 //                break;
