@@ -53,13 +53,39 @@ public class Controller {
     }
 
     public void switchToMessenger() {
+        logged_in = true;
         messenger_main.setEffect(null);
         pane_log.setVisible(false);
+        updateMessagesListRequest();
     }
 
     public void switchFromMessenger() {
+        logged_in = false;
         messenger_main.setEffect(new GaussianBlur());
         pane_log.setVisible(true);
+        messageUpdateThread.shutdown();
+    }
+
+//
+//    public void updateMessageBoxRequest() {
+//        messageUpdateThread
+//    }
+
+    public volatile boolean logged_in = false;
+    ExecutorService messageUpdateThread = Executors.newFixedThreadPool(2);
+    public void updateMessagesListRequest() {
+        messageUpdateThread.submit(() -> {
+            while (logged_in) {
+                connection.executeCommand("listmsgbox");
+                System.out.println("ON");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+            System.out.println("Out of loop");
+        });
     }
 
     @FXML
@@ -112,6 +138,11 @@ public class Controller {
 
     public void login() {
         commandExecutor("login", txt_username.getText(), txt_password.getText());
+    }
+
+    public void logout() {
+        switchFromMessenger();
+        commandExecutor("logout");
     }
 
 

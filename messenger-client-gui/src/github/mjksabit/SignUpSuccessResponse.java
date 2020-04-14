@@ -20,6 +20,6 @@ public class SignUpSuccessResponse extends Response {
         ServerConnect.controller.switchToMessenger();
         ServerConnect.controller.setUsername(ServerConnect.username);
 
-        return "listmsgbox";
+        return null;
     }
 }

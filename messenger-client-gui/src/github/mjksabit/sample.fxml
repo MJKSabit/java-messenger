@@ -35,7 +35,7 @@
                               <Insets left="5.0" />
                            </VBox.margin>
                         </Text>
-                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="198.0" text="Log Out" />
+                        <Button mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="198.0" text="Log Out" />
                      </children>
                   </VBox>
                </left>

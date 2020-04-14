@@ -24,9 +24,9 @@ public class FactoryCommand {
             case "login":
                 command = new SignInCommand();
                 break;
-//            case "logout":
-//                command = new LogOutCommand();
-//                break;
+            case "logout":
+                command = new LogOutCommand();
+                break;
 //            case "newmsgbox":
 //                command = new NewMessageBoxCommand();
 //                break;

@@ -1,0 +1,18 @@
+package github.mjksabit;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class LogOutResponse extends Response{
+    @Override
+    void ADDED_TO_THE_FACTORY() {
+        // true
+    }
+
+    @Override
+    public String executeWithNextCommand() throws JSONException {
+        JSONObject jsonObject = new JSONObject(arg);
+        sout(jsonObject.getString("username") + " logged Out successfully");
+        return null;
+    }
+}

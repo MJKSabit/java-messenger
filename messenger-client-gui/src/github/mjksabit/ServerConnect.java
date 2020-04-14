@@ -86,7 +86,7 @@ public class ServerConnect {
 
     }
 
-    public void executeCommand(String commandText) {
+    public synchronized void executeCommand(String commandText) {
         if (commandText == null) return;
 
         String responseText, responseObject;
