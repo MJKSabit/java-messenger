@@ -121,7 +121,7 @@ public class Controller {
 
     @FXML
     ListView msgShowList;
-    public ObservableList<String> messages = FXCollections.observableArrayList();
+    public ObservableList<MessageHBox> messages = FXCollections.observableArrayList();
 
     @FXML
     TextField messageText;
