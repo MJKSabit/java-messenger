@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
@@ -46,7 +47,7 @@ public class Controller {
 
     @FXML
     ListView msgbox_list;
-    public ObservableList<String> msgboxDataProvider = FXCollections.observableArrayList();
+    public ObservableList<MessageBoxListHBox> msgboxDataProvider = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -62,9 +63,9 @@ public class Controller {
         msgbox_list.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                String selected = msgbox_list.getSelectionModel().getSelectedItem().toString();
-                if ((selected!=null || selected!="") && selected.contains(" "))
-                    commandExecutor("showmsg" , selected.split(" ")[0]);
+                Object selected = msgbox_list.getSelectionModel().getSelectedItem();
+                if (selected!=null)
+                    commandExecutor("showmsg" , selected.toString());
             }
         });
 

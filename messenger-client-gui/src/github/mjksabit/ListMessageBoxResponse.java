@@ -23,7 +23,7 @@ public class ListMessageBoxResponse extends Response {
 
         // System.out.println("======================");
 
-        ObservableList<String> observableList = ServerConnect.controller.msgboxDataProvider;
+        ObservableList<MessageBoxListHBox> observableList = ServerConnect.controller.msgboxDataProvider;
         Platform.runLater(observableList::clear);
 
         for (int i=list.length()-1; i>=0; i--) {
@@ -33,8 +33,7 @@ public class ListMessageBoxResponse extends Response {
             String name = line.getString("name");
             int newMsg = line.getInt("unread");
 
-            Platform.runLater(() -> observableList.add(id+" "+name+
-                    (newMsg!=0 ? " ("+newMsg+")" : "" ))); // Do not show ( 0 )
+            Platform.runLater(() -> observableList.add(new MessageBoxListHBox(id, newMsg, name))); // Do not show ( 0 )
             ;
 
 //            System.out.println(line.getInt("id")+
